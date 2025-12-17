@@ -8,9 +8,9 @@ from tqdm import tqdm
 from mathruler.grader import extract_boxed_content
 
 from config import DatasetType, ModelConfig, get_dataset_config
-from data_utils import load_image_dataset, save_descriptions, process_response, format_instruction
-from model_utils import QwenVLModel
-from metric_utils import evaluate_single_answer, calculate_accuracy_metrics
+from utils.data_utils import load_image_dataset, save_descriptions, process_response, format_instruction
+from utils.model_utils import QwenVLModel
+from utils.metric_utils import evaluate_single_answer, calculate_accuracy_metrics
 
 os.environ["VLLM_WORKER_MULTIPROC_METHOD"] = "spawn"
 

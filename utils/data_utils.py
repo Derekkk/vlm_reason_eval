@@ -6,7 +6,7 @@ from datasets import load_dataset
 from pathlib import Path
 import json
 
-from config import DatasetConfig, DatasetType
+from utils.config import DatasetConfig, DatasetType
 
 logger = logging.getLogger(__name__)
 

@@ -4,7 +4,7 @@ import logging
 from typing import List, Dict
 from mathruler.grader import grade_answer, extract_boxed_content
 
-from config import DatasetType
+from utils.config import DatasetType
 
 logger = logging.getLogger(__name__)
 

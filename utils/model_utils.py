@@ -7,7 +7,7 @@ from qwen_vl_utils import process_vision_info
 from typing import List
 from vllm import LLM, SamplingParams
 
-from config import ModelConfig
+from utils.config import ModelConfig
 
 logger = logging.getLogger(__name__)
 
