@@ -1,0 +1,69 @@
+# Logs directory
+logs/
+*.log
+evaluation.log
+log-*
+
+# Outputs directory
+outputs/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Model checkpoints (optional - uncomment if you don't want to track models)
+# *.pt
+# *.pth
+# *.ckpt
+# *.bin
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
