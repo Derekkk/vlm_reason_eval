@@ -40,7 +40,7 @@ class ModelConfig:
     """Configuration for model settings."""
     model_name: str
     processor_name: str
-    max_new_tokens: int = 1000
+    max_new_tokens: int = 5000
     top_p: float = 0.9
     top_k: int = 50
     temperature: float = 1

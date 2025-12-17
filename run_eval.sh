@@ -18,7 +18,7 @@ MODEL_PATHS=(
 )
 
 DATASETS=("mathvista" "mathverse" "mathvision" "hallusionbench" "emma-math" "emma-chem" "mmmu-pro-vision" "emma-physics" "mmmu-pro-10" "mmmu-pro-4")
-N=10  # Number of answers to generate per question
+N=8  # Number of answers to generate per question
 DATA_SUBSET=100  # Number of data samples to evaluate on
 LOG_DIR="./logs"
 OUTPUT_DIR="./outputs"

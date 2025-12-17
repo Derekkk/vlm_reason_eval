@@ -7,7 +7,7 @@ import torch
 from tqdm import tqdm
 from mathruler.grader import extract_boxed_content
 
-from config import DatasetType, ModelConfig, get_dataset_config
+from utils.config import DatasetType, ModelConfig, get_dataset_config
 from utils.data_utils import load_image_dataset, save_descriptions, process_response, format_instruction
 from utils.model_utils import QwenVLModel
 from utils.metric_utils import evaluate_single_answer, calculate_accuracy_metrics
@@ -259,7 +259,7 @@ def main():
         use_vllm=False, 
         device="cuda", 
         system_prompt=args.SYSTEM_PROMPT
-        )
+    )
 
     # Process each dataset
     all_results = []

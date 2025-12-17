@@ -28,6 +28,7 @@ class QwenVLModel:
         self.system_prompt = system_prompt
         self.model_config = model_config
         self.model = self._load_model()
+        self.model.eval()
         self.processor = self._load_processor()
 
 
@@ -50,7 +51,7 @@ class QwenVLModel:
                 # For non-vllm mode, support multi-GPU via device_map
                 return Qwen2_5_VLForConditionalGeneration.from_pretrained(
                     self.model_config.model_name,
-                    torch_dtype=torch.bfloat16,
+                    dtype=torch.bfloat16,
                     attn_implementation="flash_attention_2",
                     device_map="auto",
                     low_cpu_mem_usage=True
