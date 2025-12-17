@@ -257,7 +257,14 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 If you use this evaluation framework in your research, please cite:
 
 ```bibtex
-[Add citation information]
+@misc{hu2025vlmreasoneval,
+  title        = {VLM Reasoning Evaluation: A comprehensive evaluation framework for Vision-Language Models},
+  author       = {Zhe Hu},
+  howpublished = {\url{https://github.com/Derekkk/vlm_reason_eval}},
+  year         = {2025}
+}
+
+
 ```
 
 ## Acknowledgments

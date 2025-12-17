@@ -31,7 +31,8 @@ def evaluate_single_dataset(
     model_config: ModelConfig,
     processor: QwenVLModel,
     data_subset: int = -1,
-    n: int = 1
+    n: int = 1,
+    gen_times: int = 1
 ) -> dict:
     """
     Evaluate a single dataset and return results.
@@ -42,6 +43,8 @@ def evaluate_single_dataset(
         device: Device to use
         processor: Image processor instance
         n: Number of answers to generate per question (default: 1)
+        gen_times: Number of times to generate answers per question (default: 1)
+            total_answers = n * gen_times, this is for GPU memory consideration
         
     Returns:
         Dictionary containing evaluation results
@@ -78,10 +81,14 @@ def evaluate_single_dataset(
             formatted_instruction = format_instruction(item['instruction'], item.get('options'), vision=True)
         else:
             formatted_instruction = item['instruction']
-        # logger.info(f"item {item}")
-        # logger.info(f"formatted_instruction {formatted_instruction}")
+        if i == 0:
+            logger.info(f"item {item}")
+            logger.info(f"formatted_instruction {formatted_instruction}\n")
         # Generate n answers
-        answer_list = processor.generate_answer(item['image_url'], formatted_instruction, n=n)
+        answer_list = []
+        for _ in range(gen_times):
+            cur_answer_list = processor.generate_answer(item['image_url'], formatted_instruction, n=n)
+            answer_list.extend(cur_answer_list)
 
         # Process ground truth response
         if dataset_type in [DatasetType.MMMU_PRO_VISION, DatasetType.MMMU_PRO_4, DatasetType.MMMU_PRO_10]:
@@ -225,6 +232,7 @@ def main():
                       default=['mathvista'], help='Dataset(s) to evaluate on (can specify multiple)')
     parser.add_argument('--n', type=int, default=10,
                        help='Number of answers to generate per question (for pass@k calculation)')
+    parser.add_argument('--gen_times', type=int, default=1, help='Number of times to generate answers per question')
     parser.add_argument('--data_subset', type=int, default=100, help='Number of data samples to evaluate on')
     parser.add_argument('--is_reason', type=bool, default=True, help='Number of data samples to evaluate on')
     args = parser.parse_args()
@@ -256,7 +264,6 @@ def main():
     logger.info(f"Loading model {model_config.model_name}")
     processor = QwenVLModel(
         model_config, 
-        use_vllm=False, 
         device="cuda", 
         system_prompt=args.SYSTEM_PROMPT
     )
@@ -269,7 +276,7 @@ def main():
         logger.info(f"{'='*60}")
         dataset_type = DatasetType(dataset_name)
 
-        result = evaluate_single_dataset(dataset_type, model_config, processor, data_subset=args.data_subset, n=args.n)
+        result = evaluate_single_dataset(dataset_type, model_config, processor, data_subset=args.data_subset, n=args.n, gen_times=args.gen_times)
         all_results.append(result)
 
     # Print summary

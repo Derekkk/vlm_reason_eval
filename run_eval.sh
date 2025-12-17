@@ -18,7 +18,8 @@ MODEL_PATHS=(
 )
 
 DATASETS=("mathvista" "mathverse" "mathvision" "hallusionbench" "emma-math" "emma-chem" "mmmu-pro-vision" "emma-physics" "mmmu-pro-10" "mmmu-pro-4")
-N=8  # Number of answers to generate per question
+N=4  # Number of answers to generate per question
+GEN_TIMES=2  # Number of times to generate answers per question
 DATA_SUBSET=100  # Number of data samples to evaluate on
 LOG_DIR="./logs"
 OUTPUT_DIR="./outputs"
@@ -101,6 +102,7 @@ for MODEL_PATH in "${MODEL_PATHS[@]}"; do
         --model_path "$MODEL_PATH" \
         --dataset $DATASETS_STR \
         --n "$N" \
+        --gen_times "$GEN_TIMES" \
         --data_subset "$DATA_SUBSET" \
         --is_reason "$IS_REASON" \
         2>&1 | tee "$LOG_FILE"
