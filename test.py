@@ -16,7 +16,7 @@ os.environ["VLLM_WORKER_MULTIPROC_METHOD"] = "spawn"
 SYSTEM_PROMPT = """You are a helpful AI Assistant, designed to provided well-reasoned and detailed responses. You FIRST think about the reasoning process as an internal monologue and then provide the user with the answer. The reasoning process MUST BE enclosed within <think> and </think> tags, and the final answer MUST BE enclosed within <answer> and </answer> tags."""
 
 if __name__ == "__main__":
-    model_path = "/data3/huzhe/workspace/evaluations/models/qwen25_vl_7b_guru_mixed_grpo_run4_step150"
+    model_path = ""
     model_config = ModelConfig(
         model_name=model_path,
         processor_name=model_path
