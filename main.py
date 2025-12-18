@@ -19,7 +19,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('evaluation.log'),
+        logging.FileHandler('logs/evaluation.log'),
         logging.StreamHandler()
     ]
 )
@@ -265,7 +265,8 @@ def main():
     processor = QwenVLModel(
         model_config, 
         device="cuda", 
-        system_prompt=args.SYSTEM_PROMPT
+        system_prompt=args.SYSTEM_PROMPT,
+        use_vllm=True
     )
 
     # Process each dataset
